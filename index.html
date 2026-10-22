@@ -1,1 +1,152 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estructura de llamada Entel: cómo decirlo</title>
+<style>
+:root{--bg:#f3f5ff;--card:#fff;--ink:#0a1f6e;--muted:#52608f;--line:#d5dbf3;--accent:#e8380d;--blue:#0033ff;--chip:#e3e8ff;--warn:#fff1d6}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1230;--card:#161d45;--ink:#eef1ff;--muted:#a9b4e0;--line:#2a3470;--accent:#ff7a55;--blue:#7d9bff;--chip:#222b63;--warn:#3b2f14}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Trebuchet MS",Verdana,sans-serif}
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;line-height:1.2;margin:8px 0 6px;color:var(--blue)}
+p.sub{color:var(--muted);margin:0 0 18px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px}
+.fields label{display:block;font-size:.85rem;color:var(--muted)}
+.fields input,.fields select{width:100%;padding:9px 10px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.rules{background:var(--warn);border-radius:10px;padding:10px 16px;margin:14px 0 22px;font-size:.95rem}
+.rules ul{margin:4px 0 0;padding-left:20px}
+h2.grp{font-size:1.25rem;margin:30px 0 10px;color:var(--blue);border-bottom:2px solid var(--line);padding-bottom:4px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.step h3{font-size:1.08rem;margin:0 0 8px;color:var(--accent)}
+.say{margin:0 0 8px}
+.say small{display:block;color:var(--muted);font-size:.82rem}
+.tip{font-size:.9rem;color:var(--muted);margin:8px 0 0}
+button{font:inherit;font-size:.88rem;padding:5px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;margin-bottom:8px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.alt{background:var(--chip)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Estructura de llamada Entel: cómo decirlo</h1>
+  <p class="sub">Del saludo a la despedida, más transferencias. Llena los datos y las frases se ajustan.</p>
+
+  <div class="fields">
+    <div><label for="a">Tu nombre y apellido</label><input id="a" value="Paola Gómez"></div>
+    <div><label for="c">Nombre del cliente</label><input id="c" value="Ramiro"></div>
+    <div><label for="d">DNI del cliente</label><input id="d" value="" placeholder="N° de DNI"></div>
+    <div><label for="q">Consulta o pedido</label><input id="q" value="" placeholder="Ej.: explicación de recibo"></div>
+    <div><label for="p">Área a transferir</label>
+      <select id="p"><option>Postpago</option><option>Hogar</option><option>Prepago</option><option>Retenciones</option><option>Seguros</option><option>Roaming</option><option>Contraseña Única</option></select></div>
+    <div><label for="t">Momento del día</label>
+      <select id="t"><option value="días">Días</option><option value="tardes">Tardes</option><option value="noches">Noches</option></select></div>
+  </div>
+
+  <div class="rules"><strong>Los 5 pasos de calidad:</strong>
+    <ul><li>Siempre saluda y despídete.</li><li>Muestra cordialidad y respeto.</li><li>Sonrisa telefónica y empatía.</li><li>Escucha activa para levantar la necesidad y dar la mejor opción.</li><li>Antes de terminar, pregunta si tiene alguna duda.</li></ul></div>
+
+  <div id="flow"></div>
+</main>
+
+<script>
+var G=[
+{g:"Estructura de la llamada",s:[
+ {t:"1. Saludo",tip:"Si el cliente es rellamador y muestra molestia, usa la última frase.",
+  d:[["Saludo","Buenos {m}. Bienvenido a Entel, le saluda {a} y estoy listo para escucharlo."],
+     ["Presentación","¿Con quién tengo el gusto?"],
+     ["Pregunta inicial","¿En qué lo puedo ayudar, {c}?"],
+     ["Por si se corta","En caso se corte la comunicación, no se preocupe, tomaré el número desde el cual se comunica para devolverle la llamada. ¿Está de acuerdo?"],
+     ["Cliente rellamador molesto","Lamento lo sucedido y haré lo necesario para brindarle una solución."]]},
+ {t:"2. Escucha activa y confirmación de la información",tip:"Escucha, reformula la consulta y personaliza con el nombre del cliente.",
+  d:[["Pedir número","Encantado de ayudarlo(a), por favor indíqueme su número en consulta."],
+     ["Reformular (Post, Pre y Hogar)","{c}, me indica que el motivo de su llamada es {q}."],
+     ["Reformular (Directorio)","El número que desea saber es de (xx)."]]},
+ {t:"3. Validación de datos",tip:"Facturación: al titular puedes explicarle el recibo completo; al usuario solo información de su línea.",
+  d:[["Uso de Siebel / One Touch","¿Podría indicarme su nombre y número de documento (DNI, RUC 10-15-17, CE, PAS) del titular del servicio?"],
+     ["Ingreso de pedidos (no biométrica)","¿Me confirma su nombre completo, tal y como figura en su DNI? ¿Su número de documento de identidad? ¿Fecha y lugar de nacimiento (validar distrito)? ¿Nombre de madre y padre? ¿Dirección de correo electrónico para enviar su contrato y recibos?"],
+     ["Contraseña Única, sin CU","Por seguridad necesitamos validar sus datos para continuar con la solicitud."],
+     ["Contraseña Única, con CU","Por seguridad necesitamos validar sus datos y debe utilizar la contraseña única en esta solicitud, según lo dispuesto por el regulador."],
+     ["Flujo de excepción CU","Le recuerdo que luego de que le entreguen su pedido le llegará un correo para la creación de su contraseña única. Tendrá un plazo de 7 días para crearla, debe tener 8 dígitos numéricos y le sugerimos que sea de fácil recordación. Si excede ese plazo, podrá descargar la app Activa tu chip y elegir la opción “Reseteo”."],
+     ["Otras consultas","Validar nombre completo y DNI."]]},
+ {t:"4. Resolución y aseguramiento",tip:"Explica la solución, o la no solución, de forma precisa, con lenguaje sencillo y actitud amable.",
+  d:[["Si piden supervisor","Entiendo, {c}. Permítame atenderlo, yo puedo encargarme de su caso y ayudarle con su consulta o pedido."],
+     ["Si el cliente insiste","Todos estamos debidamente capacitados para brindarle una buena atención y encontrar la mejor solución para usted."],
+     ["Aseguramiento","¿Hasta el momento todo claro con la información otorgada?"]]},
+ {t:"5. Ofrecimiento",tip:"Usa la tabla de planes y frases clave para ofrecer el servicio adecuado según el perfil del cliente (clientes perfilados o no perfilados).",
+  d:[["Recordatorio","Ofrece el plan que mejor se ajuste a la necesidad que levantaste en la escucha activa."]]},
+ {t:"6. App Mi Entel",tip:"Después del aseguramiento y antes de cerrar.",
+  d:[["Pregunta","Antes de terminar, ¿cuenta con nuestra App Mi Entel?"],
+     ["Si responde SÍ","En la app Mi Entel podrá consultar, recargar su saldo, comprar bolsas de datos y más. A su vez tendrá beneficios como Jueves de Entel, Cine y Bembos 2x1 y sorteos, sin consumir sus datos. ¿Desea que lo ayude?"],
+     ["Si responde NO","¡Perfecto! Aquí podrá consultar y recargar saldo y comprar bolsa de datos. Además accederá a beneficios como Jueves de Entel, Cine y Bembos 2x1 y sorteos, sin consumir sus datos. Recuerde validar los términos y condiciones antes de cada canje."]]},
+ {t:"7. NPS y despedida",tip:"NO menciones el speech de NPS a clientes críticos.",
+  d:[["NPS","En las próximas 48 horas le podría estar llegando una encuesta para calificar mi atención y el servicio que le brinda Entel, con una escala del 0 al 10, donde 0 es la calificación más baja y 10 la más alta. Le agradezco la atención brindada."],
+     ["Despedida, atención positiva","¡Gracias por contactarnos! Cuando lo necesite, estamos listos para escucharlo(a) y ayudarlo(a)."],
+     ["Despedida, atención complicada","¡Gracias por contactarnos, que tenga un buen día, tarde o noche!"]]},
+ {t:"8. Speech CAT (si el cliente no cuelga)",tip:"Úsalos en este orden.",
+  d:[["Paso 1","Para finalizar la atención, por favor le solicito que cuelgue la llamada."],
+     ["Paso 2","{c}, valido que aún se encuentra en línea. ¿Tiene alguna consulta adicional?"],
+     ["Si responde que no","En ese caso le solicito que cuelgue la llamada, por favor."],
+     ["Si a los 5 segundos no corta","Entendemos que ya no necesita información adicional, por ello procederé a liberar la llamada. Muchas gracias por su comunicación."],
+     ["Si solo insulta","Nuestro objetivo es ayudarlo y para ello es necesario mantener una comunicación respetuosa, por lo que le pido utilizar un lenguaje apropiado."],
+     ["Si continúa insultando","Debido a lenguaje inapropiado, procederé a liberar la llamada."]]}
+]},
+{g:"Transferencia asistida",s:[
+ {t:"Reglas",tip:"Siempre asistida, nunca directa. Solo 1 intento. A Retenciones solo si pide baja, portabilidad o desactivar línea móvil (no aplica a suspensión temporal ni migración a prepago). Si aceptas una transferencia, ya no podrás volver a transferir al cliente.",d:[]},
+ {t:"Avisar al cliente",tip:"",
+  d:[["Speech al cliente","Para ayudarlo con su solicitud, lo voy a transferir con el área {p} y mi compañero lo atenderá. Por mi lado eso ha sido todo en cuanto a mi atención. Buenos {m}."]]},
+ {t:"Hablar con el asesor receptor",tip:"Tipificación: consulta / Canales de atención / Se deriva llamada Postpago / Especializado.",
+  d:[["Speech al compañero","Hola compañero, mi nombre es {a}, tengo en línea al cliente {c} con el número de DNI {d}, que desea {q}."]]},
+ {t:"Si no se puede transferir: Postpago",tip:"Excepto retenciones: allí debes gestionar el pedido tú.",
+  d:[["Derivación a Postpago","Para consultas referidas al servicio Postpago, le recordamos escribirnos a nuestro WhatsApp 98 100 2000 o puede comunicarse desde una línea Entel Postpago al 123 marcando la opción 0 para hablar con un asesor, o desde un teléfono fijo al 611 7777 marcando la opción 0. Gracias por su comprensión."]]},
+ {t:"Si no se puede transferir: Hogar",tip:"La opción 3 solo está habilitada para clientes convergentes (móvil y hogar en su cuenta).",
+  d:[["Derivación a Hogar","Para consultas referidas al servicio Hogar, le recordamos escribirnos a nuestro WhatsApp 98 100 2000 o puede comunicarse desde una línea Entel Postpago al 123 marcando la opción 3. También puede comunicarse desde un teléfono fijo al 611 7777 marcando la opción 0. Gracias por su comprensión."]]},
+ {t:"Si no se puede transferir: Prepago",tip:"",
+  d:[["Derivación a Prepago","Para consultas referidas al servicio Prepago, le recomendamos escribirnos a nuestro WhatsApp 98 100 2000 o puede comunicarse desde una línea Entel Prepago al 123 marcando la opción 1 y luego la opción 0 para hablar con un asesor, o desde un teléfono fijo al 611 7777 marcando la opción 1, luego la 1 seguido de la 0. Gracias por su comprensión."]]},
+ {t:"Si no se puede transferir: Empresas",tip:"",
+  d:[["Derivación a Empresas","Le comento que se ha comunicado con el canal de atención para Personas Naturales. Si su consulta está relacionada con su servicio Empresas, debe contactarse desde su línea Entel Empresas al 123 y, si llama desde un teléfono fijo o celular de otro operador, puede marcar al 08000 9000 o al 01-611 7777, opción 2. Le recuerdo que para contactarse con el canal Empresas no debe comunicarse a estos teléfonos desde un número Entel con DNI. Gracias por su comprensión."]]}
+]},
+{g:"Durante la llamada",s:[
+ {t:"Espera y llamada cortada",tip:"Espera máxima del cliente: 30 segundos; luego recupera la llamada. Si la llamada se corta por cualquier motivo, devuélvela de inmediato (obligatorio).",
+  d:[["Al recuperar la llamada","Gracias por la espera, {c}."],
+     ["Si necesitas más tiempo","{c}, ¿me permite un momento más en línea, por favor?"]]}
+]},
+{g:"Frases de empatía (complemento)",alt:1,s:[
+ {t:"Para usar con sonrisa telefónica y empatía",tip:"Esta guía de Entel no trae frases de empatía fijas, salvo la del cliente molesto. Estas son sugerencias mías en el mismo estilo: de “usted” y sin anunciar acciones. Ajústalas con la necesidad real del cliente.",
+  d:[["Recibo más alto","Sé la molestia que le causa recibir un monto más elevado del que usted esperaba, {c}. Estoy aquí para ayudarlo, ¿de acuerdo?"],
+     ["Sin internet","Sé que es incómodo no contar con internet cuando lo necesita, {c}. Estoy aquí para ayudarlo, ¿de acuerdo?"],
+     ["Sin poder llamar","Es comprensible sentir ese malestar por no poder realizar llamadas, {c}. Estoy aquí para brindarle mi apoyo."],
+     ["Quiere un plan que le alcance","Estoy aquí para ayudarlo a encontrar un plan que se acomode mejor a sus posibilidades, {c}, ¿de acuerdo?"],
+     ["Robo o pérdida","Sé que no es sencillo pasar por una situación de robo o pérdida, {c}. Le brindaré todo mi apoyo por su seguridad."]]}
+]}];
+var A=document.getElementById("a"),C=document.getElementById("c"),D=document.getElementById("d"),Q=document.getElementById("q"),P=document.getElementById("p"),T=document.getElementById("t"),F=document.getElementById("flow");
+(function(){var h=new Date().getHours();T.value=h<12?"días":(h<19?"tardes":"noches")})();
+function v(el,f){return el.value.trim()||f}
+function fill(s){return s.split("{a}").join(v(A,"(tu nombre y apellido)")).split("{c}").join(v(C,"(nombre del cliente)")).split("{d}").join(v(D,"(N° DNI)")).split("{q}").join(v(Q,"(consulta o pedido)")).split("{p}").join(P.value).split("{m}").join(T.value)}
+function render(){
+  F.innerHTML="";
+  G.forEach(function(g){
+    var h=document.createElement("h2");h.className="grp";h.textContent=g.g;F.appendChild(h);
+    g.s.forEach(function(p){
+      var s=document.createElement("section");s.className="step"+(g.alt?" alt":"");
+      var h3=document.createElement("h3");h3.textContent=p.t;s.appendChild(h3);
+      p.d.forEach(function(x){
+        var txt=fill(x[1]);
+        var q=document.createElement("p");q.className="say";
+        var sm=document.createElement("small");sm.textContent=x[0];
+        q.appendChild(sm);q.appendChild(document.createTextNode("“"+txt+"”"));s.appendChild(q);
+        var b=document.createElement("button");b.textContent="Copiar";
+        b.onclick=function(){try{navigator.clipboard.writeText(txt);b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1200)}catch(e){}};
+        s.appendChild(b);
+      });
+      if(p.tip){var tp=document.createElement("p");tp.className="tip";tp.textContent=fill(p.tip);s.appendChild(tp)}
+      F.appendChild(s);
+    });
+  });
+}
+[A,C,D,Q].forEach(function(i){i.addEventListener("input",render)});[P,T].forEach(function(i){i.addEventListener("change",render)});render();
+</script>
+</body>
+</html>
