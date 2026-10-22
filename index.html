@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,86 +5,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Estructura de llamada Entel: cómo decirlo</title>
 <style>
-:root{--bg:#f3f5ff;--card:#fff;--ink:#0a1f6e;--muted:#52608f;--line:#d5dbf3;--accent:#e8380d;--blue:#0033ff;--chip:#e3e8ff;--warn:#fff1d6}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1230;--card:#161d45;--ink:#eef1ff;--muted:#a9b4e0;--line:#2a3470;--accent:#ff7a55;--blue:#7d9bff;--chip:#222b63;--warn:#3b2f14}}
+:root{--bg:#eef1fb;--card:#fff;--ink:#101c4d;--muted:#58648f;--line:#d9dff3;--blue:#0033ff;--orange:#ff3b00;--soft:#e6ebff;--warn:#fff0e3}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1129;--card:#151c42;--ink:#eef1ff;--muted:#a9b4e0;--line:#27316b;--blue:#7d9bff;--orange:#ff8a66;--soft:#1f2860;--warn:#3a2618}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Trebuchet MS",Verdana,sans-serif}
-main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
-h1{font-size:1.7rem;line-height:1.2;margin:8px 0 6px;color:var(--blue)}
-p.sub{color:var(--muted);margin:0 0 18px}
-.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px}
-.fields label{display:block;font-size:.85rem;color:var(--muted)}
-.fields input,.fields select{width:100%;padding:9px 10px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
-.rules{background:var(--warn);border-radius:10px;padding:10px 16px;margin:14px 0 22px;font-size:.95rem}
-.rules ul{margin:4px 0 0;padding-left:20px}
-h2.grp{font-size:1.25rem;margin:30px 0 10px;color:var(--blue);border-bottom:2px solid var(--line);padding-bottom:4px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
-.step h3{font-size:1.08rem;margin:0 0 8px;color:var(--accent)}
-.say{margin:0 0 8px}
-.say small{display:block;color:var(--muted);font-size:.82rem}
-.tip{font-size:.9rem;color:var(--muted);margin:8px 0 0}
-button{font:inherit;font-size:.88rem;padding:5px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;margin-bottom:8px}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.alt{background:var(--chip)}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Trebuchet MS",Verdana,sans-serif}
+.hero{background:linear-gradient(135deg,#0033ff,#14127f);color:#fff;padding:26px 16px 54px}
+.hero div{max-width:780px;margin:0 auto}
+.hero h1{margin:0 0 4px;font-size:1.6rem;line-height:1.2}
+.hero p{margin:0;opacity:.85}
+main{max-width:780px;margin:-34px auto 0;padding:0 14px 70px}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(10,20,80,.12)}
+details.data summary{padding:10px 0;font-weight:bold;cursor:pointer}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;padding:2px 0 14px}
+.fields label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:2px}
+.fields input,.fields select{width:100%;padding:9px 10px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 0;background:var(--bg);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.92rem;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px;color:var(--muted);font-size:.88rem}
+.bar button{background:none;border:0;color:var(--blue);font:inherit;font-size:.88rem;cursor:pointer;text-decoration:underline}
+details.step{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+details.step summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;font-weight:bold}
+details.step summary::-webkit-details-marker{display:none}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.9rem}
+.num.dot{background:var(--blue)}
+.chev{margin-left:auto;transition:transform .2s;color:var(--muted)}
+details[open] .chev{transform:rotate(90deg)}
+.body{padding:0 16px 14px}
+.tip{background:var(--warn);border-left:4px solid var(--orange);border-radius:8px;padding:8px 12px;font-size:.9rem;margin:0 0 12px}
+.say{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:var(--bg)}
+.say .tx{flex:1;min-width:0}
+.say small{display:block;color:var(--muted);font-size:.8rem;margin-bottom:2px}
+.say .q{overflow-wrap:anywhere}
+.cp{flex:none;padding:6px 12px;border-radius:8px;border:1px solid var(--blue);background:var(--card);color:var(--blue);font:inherit;font-size:.85rem;cursor:pointer}
+.cp:hover{background:var(--blue);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#101c4d;color:#fff;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:9}
+#toast.on{opacity:1;transform:translateX(-50%)}
+@media (max-width:520px){.say{flex-direction:column}.cp{align-self:flex-end}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<header class="hero"><div>
+  <h1>Estructura de llamada Entel</h1>
+  <p>Cómo decirlo, del saludo a la despedida</p>
+</div></header>
+
 <main>
-  <h1>Estructura de llamada Entel: cómo decirlo</h1>
-  <p class="sub">Del saludo a la despedida, más transferencias. Llena los datos y las frases se ajustan.</p>
+  <details class="data" open>
+    <summary>Datos de la llamada</summary>
+    <div class="fields">
+      <div><label for="a">Tu nombre y apellido</label><input id="a" value="Paola Gómez"></div>
+      <div><label for="c">Nombre del cliente</label><input id="c" value="Ramiro"></div>
+      <div><label for="d">DNI del cliente</label><input id="d" placeholder="N° de DNI"></div>
+      <div><label for="q">Consulta o pedido</label><input id="q" placeholder="Ej.: explicación de recibo"></div>
+      <div><label for="p">Área a transferir</label>
+        <select id="p"><option>Postpago</option><option>Hogar</option><option>Prepago</option><option>Retenciones</option><option>Seguros</option><option>Roaming</option><option>Contraseña Única</option></select></div>
+      <div><label for="t">Momento del día</label>
+        <select id="t"><option value="días">Días</option><option value="tardes">Tardes</option><option value="noches">Noches</option></select></div>
+    </div>
+  </details>
 
-  <div class="fields">
-    <div><label for="a">Tu nombre y apellido</label><input id="a" value="Paola Gómez"></div>
-    <div><label for="c">Nombre del cliente</label><input id="c" value="Ramiro"></div>
-    <div><label for="d">DNI del cliente</label><input id="d" value="" placeholder="N° de DNI"></div>
-    <div><label for="q">Consulta o pedido</label><input id="q" value="" placeholder="Ej.: explicación de recibo"></div>
-    <div><label for="p">Área a transferir</label>
-      <select id="p"><option>Postpago</option><option>Hogar</option><option>Prepago</option><option>Retenciones</option><option>Seguros</option><option>Roaming</option><option>Contraseña Única</option></select></div>
-    <div><label for="t">Momento del día</label>
-      <select id="t"><option value="días">Días</option><option value="tardes">Tardes</option><option value="noches">Noches</option></select></div>
-  </div>
-
-  <div class="rules"><strong>Los 5 pasos de calidad:</strong>
-    <ul><li>Siempre saluda y despídete.</li><li>Muestra cordialidad y respeto.</li><li>Sonrisa telefónica y empatía.</li><li>Escucha activa para levantar la necesidad y dar la mejor opción.</li><li>Antes de terminar, pregunta si tiene alguna duda.</li></ul></div>
-
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <div class="bar"><span id="count"></span><button id="tog" type="button">Abrir todo</button></div>
   <div id="flow"></div>
 </main>
+<div id="toast" role="status" aria-live="polite">Copiado</div>
 
 <script>
 var G=[
-{g:"Estructura de la llamada",s:[
- {t:"1. Saludo",tip:"Si el cliente es rellamador y muestra molestia, usa la última frase.",
+{n:"Llamada",g:"Estructura de la llamada",s:[
+ {t:"Saludo",tip:"Si el cliente es rellamador y muestra molestia, usa la última frase.",
   d:[["Saludo","Buenos {m}. Bienvenido a Entel, le saluda {a} y estoy listo para escucharlo."],
      ["Presentación","¿Con quién tengo el gusto?"],
      ["Pregunta inicial","¿En qué lo puedo ayudar, {c}?"],
      ["Por si se corta","En caso se corte la comunicación, no se preocupe, tomaré el número desde el cual se comunica para devolverle la llamada. ¿Está de acuerdo?"],
      ["Cliente rellamador molesto","Lamento lo sucedido y haré lo necesario para brindarle una solución."]]},
- {t:"2. Escucha activa y confirmación de la información",tip:"Escucha, reformula la consulta y personaliza con el nombre del cliente.",
+ {t:"Escucha activa y confirmación de la información",tip:"Escucha, reformula la consulta y personaliza con el nombre del cliente. Luego di tu frase de empatía y pasa a validar datos. En “Consulta o pedido” escribe algo como “su recibo” o “su línea”.",
   d:[["Pedir número","Encantado de ayudarlo(a), por favor indíqueme su número en consulta."],
      ["Reformular (Post, Pre y Hogar)","{c}, me indica que el motivo de su llamada es {q}."],
-     ["Reformular (Directorio)","El número que desea saber es de (xx)."]]},
- {t:"3. Validación de datos",tip:"Facturación: al titular puedes explicarle el recibo completo; al usuario solo información de su línea.",
+     ["Reformular (Directorio)","El número que desea saber es de (xx)."],
+     ["Empatía · cálida (después de reformular)","{c}, no se preocupe, estoy con usted. Entiendo lo molesto que puede ser esto con {q}, y quiero que sepa que cuenta con todo mi apoyo."],
+     ["Empatía · breve","Tranquilo, {c}. Estoy aquí para ayudarlo con {q}. Cuente conmigo."],
+     ["Empatía · profesional","{c}, comprendo su preocupación con {q}. Haré lo necesario para brindarle una solución clara. Estoy a su disposición."],
+     ["Empatía · con pausa","Entiendo la molestia que esto le causa, {c}. Estoy aquí para ayudarlo, ¿de acuerdo?"]]},
+ {t:"Validación de datos",tip:"Facturación: al titular puedes explicarle el recibo completo; al usuario solo información de su línea.",
   d:[["Uso de Siebel / One Touch","¿Podría indicarme su nombre y número de documento (DNI, RUC 10-15-17, CE, PAS) del titular del servicio?"],
      ["Ingreso de pedidos (no biométrica)","¿Me confirma su nombre completo, tal y como figura en su DNI? ¿Su número de documento de identidad? ¿Fecha y lugar de nacimiento (validar distrito)? ¿Nombre de madre y padre? ¿Dirección de correo electrónico para enviar su contrato y recibos?"],
      ["Contraseña Única, sin CU","Por seguridad necesitamos validar sus datos para continuar con la solicitud."],
      ["Contraseña Única, con CU","Por seguridad necesitamos validar sus datos y debe utilizar la contraseña única en esta solicitud, según lo dispuesto por el regulador."],
      ["Flujo de excepción CU","Le recuerdo que luego de que le entreguen su pedido le llegará un correo para la creación de su contraseña única. Tendrá un plazo de 7 días para crearla, debe tener 8 dígitos numéricos y le sugerimos que sea de fácil recordación. Si excede ese plazo, podrá descargar la app Activa tu chip y elegir la opción “Reseteo”."],
      ["Otras consultas","Validar nombre completo y DNI."]]},
- {t:"4. Resolución y aseguramiento",tip:"Explica la solución, o la no solución, de forma precisa, con lenguaje sencillo y actitud amable.",
+ {t:"Resolución y aseguramiento",tip:"Explica la solución, o la no solución, de forma precisa, con lenguaje sencillo y actitud amable.",
   d:[["Si piden supervisor","Entiendo, {c}. Permítame atenderlo, yo puedo encargarme de su caso y ayudarle con su consulta o pedido."],
      ["Si el cliente insiste","Todos estamos debidamente capacitados para brindarle una buena atención y encontrar la mejor solución para usted."],
      ["Aseguramiento","¿Hasta el momento todo claro con la información otorgada?"]]},
- {t:"5. Ofrecimiento",tip:"Usa la tabla de planes y frases clave para ofrecer el servicio adecuado según el perfil del cliente (clientes perfilados o no perfilados).",
+ {t:"Ofrecimiento",tip:"Usa la tabla de planes y frases clave para ofrecer el servicio adecuado según el perfil del cliente (perfilados o no perfilados).",
   d:[["Recordatorio","Ofrece el plan que mejor se ajuste a la necesidad que levantaste en la escucha activa."]]},
- {t:"6. App Mi Entel",tip:"Después del aseguramiento y antes de cerrar.",
+ {t:"App Mi Entel",tip:"Después del aseguramiento y antes de cerrar.",
   d:[["Pregunta","Antes de terminar, ¿cuenta con nuestra App Mi Entel?"],
      ["Si responde SÍ","En la app Mi Entel podrá consultar, recargar su saldo, comprar bolsas de datos y más. A su vez tendrá beneficios como Jueves de Entel, Cine y Bembos 2x1 y sorteos, sin consumir sus datos. ¿Desea que lo ayude?"],
      ["Si responde NO","¡Perfecto! Aquí podrá consultar y recargar saldo y comprar bolsa de datos. Además accederá a beneficios como Jueves de Entel, Cine y Bembos 2x1 y sorteos, sin consumir sus datos. Recuerde validar los términos y condiciones antes de cada canje."]]},
- {t:"7. NPS y despedida",tip:"NO menciones el speech de NPS a clientes críticos.",
+ {t:"NPS y despedida",tip:"NO menciones el speech de NPS a clientes críticos.",
   d:[["NPS","En las próximas 48 horas le podría estar llegando una encuesta para calificar mi atención y el servicio que le brinda Entel, con una escala del 0 al 10, donde 0 es la calificación más baja y 10 la más alta. Le agradezco la atención brindada."],
      ["Despedida, atención positiva","¡Gracias por contactarnos! Cuando lo necesite, estamos listos para escucharlo(a) y ayudarlo(a)."],
      ["Despedida, atención complicada","¡Gracias por contactarnos, que tenga un buen día, tarde o noche!"]]},
- {t:"8. Speech CAT (si el cliente no cuelga)",tip:"Úsalos en este orden.",
+ {t:"Speech CAT (si el cliente no cuelga)",tip:"Úsalos en este orden.",
   d:[["Paso 1","Para finalizar la atención, por favor le solicito que cuelgue la llamada."],
      ["Paso 2","{c}, valido que aún se encuentra en línea. ¿Tiene alguna consulta adicional?"],
      ["Si responde que no","En ese caso le solicito que cuelgue la llamada, por favor."],
@@ -93,7 +121,7 @@ var G=[
      ["Si solo insulta","Nuestro objetivo es ayudarlo y para ello es necesario mantener una comunicación respetuosa, por lo que le pido utilizar un lenguaje apropiado."],
      ["Si continúa insultando","Debido a lenguaje inapropiado, procederé a liberar la llamada."]]}
 ]},
-{g:"Transferencia asistida",s:[
+{n:"Transferencia",g:"Transferencia asistida",s:[
  {t:"Reglas",tip:"Siempre asistida, nunca directa. Solo 1 intento. A Retenciones solo si pide baja, portabilidad o desactivar línea móvil (no aplica a suspensión temporal ni migración a prepago). Si aceptas una transferencia, ya no podrás volver a transferir al cliente.",d:[]},
  {t:"Avisar al cliente",tip:"",
   d:[["Speech al cliente","Para ayudarlo con su solicitud, lo voy a transferir con el área {p} y mi compañero lo atenderá. Por mi lado eso ha sido todo en cuanto a mi atención. Buenos {m}."]]},
@@ -108,45 +136,68 @@ var G=[
  {t:"Si no se puede transferir: Empresas",tip:"",
   d:[["Derivación a Empresas","Le comento que se ha comunicado con el canal de atención para Personas Naturales. Si su consulta está relacionada con su servicio Empresas, debe contactarse desde su línea Entel Empresas al 123 y, si llama desde un teléfono fijo o celular de otro operador, puede marcar al 08000 9000 o al 01-611 7777, opción 2. Le recuerdo que para contactarse con el canal Empresas no debe comunicarse a estos teléfonos desde un número Entel con DNI. Gracias por su comprensión."]]}
 ]},
-{g:"Durante la llamada",s:[
+{n:"Durante",g:"Durante la llamada",s:[
  {t:"Espera y llamada cortada",tip:"Espera máxima del cliente: 30 segundos; luego recupera la llamada. Si la llamada se corta por cualquier motivo, devuélvela de inmediato (obligatorio).",
   d:[["Al recuperar la llamada","Gracias por la espera, {c}."],
      ["Si necesitas más tiempo","{c}, ¿me permite un momento más en línea, por favor?"]]}
 ]},
-{g:"Frases de empatía (complemento)",alt:1,s:[
- {t:"Para usar con sonrisa telefónica y empatía",tip:"Esta guía de Entel no trae frases de empatía fijas, salvo la del cliente molesto. Estas son sugerencias mías en el mismo estilo: de “usted” y sin anunciar acciones. Ajústalas con la necesidad real del cliente.",
+{n:"Empatía",g:"Frases de empatía (complemento)",s:[
+ {t:"Para usar con sonrisa telefónica y empatía",tip:"Esta guía de Entel no trae frases de empatía fijas, salvo la del cliente molesto. Estas son sugerencias en el mismo estilo: de “usted” y sin anunciar acciones. Ajústalas con la necesidad real del cliente.",
   d:[["Recibo más alto","Sé la molestia que le causa recibir un monto más elevado del que usted esperaba, {c}. Estoy aquí para ayudarlo, ¿de acuerdo?"],
      ["Sin internet","Sé que es incómodo no contar con internet cuando lo necesita, {c}. Estoy aquí para ayudarlo, ¿de acuerdo?"],
      ["Sin poder llamar","Es comprensible sentir ese malestar por no poder realizar llamadas, {c}. Estoy aquí para brindarle mi apoyo."],
      ["Quiere un plan que le alcance","Estoy aquí para ayudarlo a encontrar un plan que se acomode mejor a sus posibilidades, {c}, ¿de acuerdo?"],
      ["Robo o pérdida","Sé que no es sencillo pasar por una situación de robo o pérdida, {c}. Le brindaré todo mi apoyo por su seguridad."]]}
 ]}];
-var A=document.getElementById("a"),C=document.getElementById("c"),D=document.getElementById("d"),Q=document.getElementById("q"),P=document.getElementById("p"),T=document.getElementById("t"),F=document.getElementById("flow");
+
+var $=function(i){return document.getElementById(i)};
+var A=$("a"),C=$("c"),D=$("d"),Q=$("q"),P=$("p"),T=$("t"),F=$("flow"),TB=$("tabs"),TG=$("tog"),CT=$("count"),TO=$("toast");
 (function(){var h=new Date().getHours();T.value=h<12?"días":(h<19?"tardes":"noches")})();
-function v(el,f){return el.value.trim()||f}
+function v(e,f){return e.value.trim()||f}
 function fill(s){return s.split("{a}").join(v(A,"(tu nombre y apellido)")).split("{c}").join(v(C,"(nombre del cliente)")).split("{d}").join(v(D,"(N° DNI)")).split("{q}").join(v(Q,"(consulta o pedido)")).split("{p}").join(P.value).split("{m}").join(T.value)}
-function render(){
-  F.innerHTML="";
-  G.forEach(function(g){
-    var h=document.createElement("h2");h.className="grp";h.textContent=g.g;F.appendChild(h);
-    g.s.forEach(function(p){
-      var s=document.createElement("section");s.className="step"+(g.alt?" alt":"");
-      var h3=document.createElement("h3");h3.textContent=p.t;s.appendChild(h3);
-      p.d.forEach(function(x){
-        var txt=fill(x[1]);
-        var q=document.createElement("p");q.className="say";
-        var sm=document.createElement("small");sm.textContent=x[0];
-        q.appendChild(sm);q.appendChild(document.createTextNode("“"+txt+"”"));s.appendChild(q);
-        var b=document.createElement("button");b.textContent="Copiar";
-        b.onclick=function(){try{navigator.clipboard.writeText(txt);b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1200)}catch(e){}};
-        s.appendChild(b);
-      });
-      if(p.tip){var tp=document.createElement("p");tp.className="tip";tp.textContent=fill(p.tip);s.appendChild(tp)}
-      F.appendChild(s);
-    });
-  });
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+var cur=0,tt;
+function toast(){TO.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){TO.classList.remove("on")},1100)}
+function copy(t){try{navigator.clipboard.writeText(t).then(toast,toast)}catch(e){toast()}}
+function refresh(){
+  var n=F.querySelectorAll("[data-t]");
+  for(var i=0;i<n.length;i++){var x=n[i];x.textContent=(x.className==="q"?"“"+fill(x.dataset.t)+"”":fill(x.dataset.t))}
 }
-[A,C,D,Q].forEach(function(i){i.addEventListener("input",render)});[P,T].forEach(function(i){i.addEventListener("change",render)});render();
+function show(i){
+  cur=i;
+  [].forEach.call(TB.children,function(b,k){b.setAttribute("aria-selected",k===i?"true":"false")});
+  F.innerHTML="";
+  var g=G[i];CT.textContent=g.g+" · "+g.s.length+(g.s.length===1?" paso":" pasos");
+  g.s.forEach(function(p,k){
+    var d=el("details","step");if(k===0)d.open=true;
+    var s=el("summary");
+    s.appendChild(el("span","num"+(g.s.length===1||i>0&&i<3?" dot":""),i===0?String(k+1):"•"));
+    s.appendChild(el("span","",p.t));s.appendChild(el("span","chev","›"));
+    d.appendChild(s);
+    var b=el("div","body");
+    if(p.tip){var tp=el("p","tip");tp.dataset.t=p.tip;b.appendChild(tp)}
+    p.d.forEach(function(x){
+      var r=el("div","say"),tx=el("div","tx");
+      tx.appendChild(el("small","",x[0]));
+      var q=el("div","q");q.dataset.t=x[1];tx.appendChild(q);
+      var btn=el("button","cp","Copiar");btn.type="button";
+      btn.onclick=function(){copy(fill(x[1]))};
+      r.appendChild(tx);r.appendChild(btn);b.appendChild(r);
+    });
+    d.appendChild(b);F.appendChild(d);
+  });
+  TG.textContent="Abrir todo";refresh();
+}
+G.forEach(function(g,i){
+  var b=el("button","tab",g.n);b.type="button";b.setAttribute("role","tab");
+  b.onclick=function(){show(i);window.scrollTo({top:0})};TB.appendChild(b);
+});
+TG.onclick=function(){
+  var all=F.querySelectorAll("details"),open=TG.textContent==="Abrir todo";
+  [].forEach.call(all,function(d){d.open=open});TG.textContent=open?"Cerrar todo":"Abrir todo";
+};
+[A,C,D,Q].forEach(function(i){i.addEventListener("input",refresh)});[P,T].forEach(function(i){i.addEventListener("change",refresh)});
+show(0);
 </script>
 </body>
 </html>
